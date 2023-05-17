@@ -1,0 +1,51 @@
+#include<bits/stdc++.h>
+#define ll long long
+#define N '\n'
+using namespace std;
+
+int main()
+{
+    ll n,i,it,j,c,d,s = 0,x,y,a,b,mini = LLONG_MAX;
+    cin >> n;
+    for(it = 0;it < n;it++)
+    {
+        mini = LLONG_MAX;
+        cin >> c >> d;
+        x = __gcd(c,d);
+        if(x == 1)
+        {
+            y = d-c;
+            if(y == 1)
+            {
+                cout << "-1\n";
+            }
+            else
+            {
+                vector<ll> v;
+                for(i = 2;(i*i) <= y;i++)
+                {
+                    if(y % i == 0)
+                    {
+                        a = ceil(d / (double)i);
+                        b = a * i;
+                        mini = min(mini,b);
+                        a = ceil(d / (double)(y/i));
+                        b = a * (y/i);
+                        mini = min(mini,b);
+
+                    }
+                }
+                a = ceil(d / (double)y);
+                b = a * y;
+                mini = min(mini,b);
+                //cout << mini << N;
+                cout << mini - d << N;
+
+            }
+        }
+        else
+        {
+            cout << "0\n";
+        }
+    }
+}
